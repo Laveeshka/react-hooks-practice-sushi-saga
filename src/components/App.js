@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import SushiContainer from "./SushiContainer";
 import Table from "./Table";
+import SushiWalletForm from "./SushiWalletForm";
 
 const API = "http://localhost:3001/sushis";
 
@@ -25,10 +26,15 @@ function App() {
     setBudget(prevBudget => prevBudget - sushi.price);
   }
 
+  function addToBudget(topUpValue){
+    setBudget(prevBudget => prevBudget + topUpValue);
+  }
+
   return (
     <div className="app">
       <SushiContainer sushis={sushis} onEatPlate={addSushiToTable} budget={budget}/>
       <Table plates={plates} budget={budget}/>
+      <SushiWalletForm addToBudget={addToBudget}/>
     </div>
   );
 }
