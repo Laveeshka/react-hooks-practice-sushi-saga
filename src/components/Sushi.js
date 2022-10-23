@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function Sushi({ sushi, onEatPlate }) {
+function Sushi({ sushi, onEatPlate, budget }) {
   //state to check whether the sushi has been eaten
   const [isEaten, setIsEaten] = useState(false); 
 
@@ -10,8 +10,10 @@ function Sushi({ sushi, onEatPlate }) {
 
   //set isEaten to true for the clicked plate
   function handlePlateClick(){
-    setIsEaten(!isEaten);
-    onEatPlate(sushi);
+    if(budget >= price){
+      setIsEaten(!isEaten);
+      onEatPlate(sushi);
+    }
   }
   
   return (
