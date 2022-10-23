@@ -5,8 +5,9 @@ import Table from "./Table";
 const API = "http://localhost:3001/sushis";
 
 function App() {
-  //set state for sushis list
+  //set state for sushis list, plates list
   const [sushis, setSushis] = useState([]);
+  const [plates, setPlates] = useState([]);
 
   //fetch sushis list and assign to state
   useEffect(() => {
@@ -17,10 +18,15 @@ function App() {
       })
   }, []);
 
+  function addSushiToTable(sushi){
+    const updatedPlates = [...plates, sushi];
+    setPlates(updatedPlates);
+  }
+
   return (
     <div className="app">
-      <SushiContainer sushis={sushis}/>
-      <Table />
+      <SushiContainer sushis={sushis} onEatPlate={addSushiToTable}/>
+      <Table plates={plates}/>
     </div>
   );
 }

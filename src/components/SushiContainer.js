@@ -7,7 +7,7 @@ import Sushi from "./Sushi";
 //non-destructive method of modifying the sushis array
 //slice method
 //use state to update the moving start index
-function SushiContainer({ sushis }) {
+function SushiContainer({ sushis, onEatPlate }) {
   const [startIndex, setStartIndex] = useState(0);
   const offset = 4;
 
@@ -18,7 +18,7 @@ function SushiContainer({ sushis }) {
 
   const sushiComponents = sushis
     .slice(startIndex, startIndex + offset)
-    .map((sushi) => <Sushi key={sushi.id} sushi={sushi} />);  
+    .map((sushi) => <Sushi key={sushi.id} sushi={sushi} onEatPlate={onEatPlate}/>);  
 
   return (
     <div className="belt">
